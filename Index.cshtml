@@ -1,0 +1,152 @@
+﻿@model List<skolmaten.Models.maträttModel>
+
+@{
+    ViewData["Title"] = "Matsedel";
+}
+
+<meta charset="utf-8">
+
+<style>
+    body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background-color: #e8e4dc;
+        margin: 0;
+        padding: 40px 20px;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .sida {
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        background: #f5f1ea;
+        padding: 50px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-radius: 12px;
+    }
+
+    .topp {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #bbb;
+    }
+
+    .topp-logga img {
+        width: 140px;
+        height: 140px;
+        object-fit: contain;
+    }
+
+    .topp-text {
+        text-align: center;
+        flex: 1;
+        padding: 0 20px;
+    }
+
+        .topp-text h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+        }
+
+        .topp-text p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+    .topp-instagram {
+        text-align: right;
+        font-size: 0.85rem;
+    }
+
+        .topp-instagram a {
+            color: #1a1a1a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+            .topp-instagram a:hover {
+                text-decoration: underline;
+            }
+
+    .instagram-ikon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .dagar-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 60px;
+    }
+
+    .dag-sektion {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .dag-sektion:last-child {
+            border-bottom: none;
+        }
+
+    .dag-namn {
+        font-size: 1.15rem;
+        font-weight: bold;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+
+    .maträtt {
+        font-size: 0.95rem;
+        color: #333;
+        padding: 2px 0;
+        line-height: 1.5;
+    }
+</style>
+
+<div class="sida">
+    <div class="topp">
+    
+
+        <div class="topp-text">
+            <h1>Matsedel vecka @ViewData["Vecka"]</h1>
+        </div>
+
+        <div class="topp-instagram">
+            <a href="https://www.instagram.com/restaurang_tullangen/" target="_blank">
+                <svg class="instagram-ikon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                </svg>
+                restaurang_tullangen
+            </a>
+        </div>
+    </div>
+
+    <div class="dagar-grid">
+        @foreach (var item in Model)
+        {
+            <div class="dag-sektion">
+                <div class="dag-namn">@item.Dag</div>
+                @foreach (var maträtt in item.Maträtter)
+                {
+                    <div class="maträtt">@maträtt</div>
+                }
+            </div>
+        }
+    </div>
+</div>
